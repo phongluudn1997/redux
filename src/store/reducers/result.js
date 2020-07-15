@@ -1,4 +1,4 @@
-import * as actionTypes from "./../actions";
+import * as actionTypes from "./../actions/actions";
 
 const intialState = {
   results: [],
@@ -11,7 +11,7 @@ const reducer = (state = intialState, action) => {
         ...state,
         results: state.results.concat({
           id: new Date(),
-          value: action.result,
+          value: action.payload.result,
         }),
       };
 
@@ -19,7 +19,9 @@ const reducer = (state = intialState, action) => {
       console.log(action);
       return {
         ...state,
-        results: state.results.filter((result) => result.id !== action.id),
+        results: state.results.filter(
+          (result) => result.id !== action.payload.id
+        ),
       };
 
     default:
